@@ -7,6 +7,8 @@
 # controlling program for iwprojects.
 
 import sys
+import folium
+
 print(sys.executable)
 
 PROJECT_TYPE = "TREES"
@@ -88,6 +90,9 @@ print(f"Running script: {script_path}")
 
 class ControllerApp(iwApp):
     def __init__(self):
+        
+        display_basic_map() 
+        
         # ... other initializations ...
         self.natural_world = naturalWorld_classes.NaturalWorld()
         self.world_data = self.natural_world.get_physical_data()
@@ -188,7 +193,8 @@ class ControllerApp(iwApp):
         # Clear the dev_mode_surface before redrawing
         self.dev_mode1_surface.fill((200, 200, 255))  
         self.dev_mode1_surface.blit(coords_text, (10, 10))
-              
+
+  
 
     def main_loop(self):
         running = True
@@ -234,6 +240,16 @@ class ControllerApp(iwApp):
 
 
 
+def display_basic_map():
+    # Sample center coordinates (you can change these)
+    center_lat = 35  
+    center_long = -100
+
+    # Create a Folium map object
+    map = folium.Map(location=[center_lat, center_long], zoom_start=3)
+
+    # Display the map (change the output method as needed)
+    map.save("maptest.html")  # Saves as a standalone HTML file
 
 
 # And LET"S GO!
